@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Library</h1>
+<p>Current user: <strong>{{ current_user.name }}</strong></p>
+<a href="/user_dash/{{current_user.user_id}}"> Dashboard</a>
+<h2>Switch User:</h2>
+<ul>
+	<li><a href="{{ url_for('switch_user', user_index=0) }}">Alice</a></li>
+	<li><a href="{{ url_for('switch_user', user_index=1) }}">Bob</a></li>
+	<li><a href="{{ url_for('switch_user', user_index=2) }}">Charlie</a></li>
+</ul>
+
+<p><a href="{{ url_for('list_books') }}">View all books</a></p>
+{% endblock %}

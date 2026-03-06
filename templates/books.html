@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Book List{% endblock %}
+
+{% block content %}
+<h1>Library Catalog</h1>
+<p><strong>Current user: </strong>{{ current_user.name }}</p>
+<ul>
+	<p>Total books in library: {{ book_total }}</p>
+	{% for book in books %}
+	{% set badge = "| 🔥 Popular" if book.times_checked_out >= 3 else "" %}
+	<li>
+		<a href="/book/{{book.id}}">
+			{{ book.title }} by {{ book.author }} {{badge}}
+		</a>
+		- {% if book.available %}✅ Available{% else %}❌ Checked out{% endif %}
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
