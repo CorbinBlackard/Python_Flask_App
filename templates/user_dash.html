@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <title>User Dashboard</title>
 <header>
 	<h2>{{user.name}}'s Dashboard</h2>
@@ -14,8 +17,10 @@
 {%if most_checked_out.times_checked_out > 0%}<p>Most popular: <strong>{{most_checked_out.title}}</strong>- Checked out
 	{{most_checked_out.times_checked_out}} times.
 </p>{%endif%}
-<p>
+<p>{%endif%}
 <p>Books returned: {{ user.books_returned_count }}</p>
 </p>
-{%endif%}
+
 <p><a href="{{ url_for('index') }}">← Back home</a></p>
+
+{% endblock %}
