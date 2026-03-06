@@ -2,7 +2,6 @@
 <header>
 	<h2>{{user.name}}'s Dashboard</h2>
 </header>
-
 {% if user.checked_out_books %}
 <strong>Currently Checked Out:</strong>
 {% for book in user.checked_out_books%}
@@ -12,5 +11,11 @@
 </ul>
 </p>
 {%endfor%}
+{%if most_checked_out.times_checked_out > 0%}<p>Most popular: <strong>{{most_checked_out.title}}</strong>- Checked out
+	{{most_checked_out.times_checked_out}} times.
+</p>{%endif%}
+<p>
+<p>Books returned: {{ user.books_returned_count }}</p>
+</p>
 {%endif%}
 <p><a href="{{ url_for('index') }}">← Back home</a></p>

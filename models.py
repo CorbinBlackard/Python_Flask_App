@@ -1,7 +1,7 @@
 import datetime
 
 class Book:
-	def __init__(self, id, title, author):
+	def __init__(self, id, title, author, audience):
 		self.id = id
 		self.title = title
 		self.author = author
@@ -9,6 +9,7 @@ class Book:
 		self.due_date = None
 		self.borrower = None
 		self.times_checked_out = 0
+		self.audience = audience
 
 	def check_out(self, user , days=14):
 		self.borrower = user
@@ -31,6 +32,7 @@ class User:
 		self.checked_out_books = []
 		self.user_id = f"USER{User.id_counter:03d}"
 		User.id_counter += 1
+		self.books_returned_count = 0
 
 	def check_out_book(self, book, days=14):
 		self.checked_out_books.append(book)
@@ -39,14 +41,15 @@ class User:
 	def return_book(self, book):
 		self.checked_out_books.remove(book)
 		book.return_book(self)
+		self.books_returned_count += 1
 
 
 books = [
-	Book(1, "The Hobbit", "J.R.R. Tolkien"),
-	Book(2, "1984", "George Orwell"),
-	Book(3, "Dune", "Frank Herbert"),
-	Book(4, "Python Crash Course", "Eric Matthes"),
-	Book(5, "Clean Code", "Robert Martin")
+	Book(1, "The Hobbit", "J.R.R. Tolkien", 'All Ages'),
+	Book(2, "1984", "George Orwell", 'Adult'),
+	Book(3, "Dune", "Frank Herbert", 'Adult'),
+	Book(4, "Python Crash Course", "Eric Matthes", 'All Ages'),
+	Book(5, "Clean Code", "Robert Martin", 'Teen')
 ]
 
 users = [

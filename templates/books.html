@@ -11,7 +11,7 @@
 	{% set badge = "| 🔥 Popular" if book.times_checked_out >= 3 else "" %}
 	<li>
 		<a href="/book/{{book.id}}">
-			{{ book.title }} by {{ book.author }} {{badge}}
+			{{ book.title }} by {{ book.author }} - [{{book.audience}}]{{badge}}
 		</a>
 		- {% if book.available %}✅ Available{% else %}❌ Checked out{% endif %}
 	</li>

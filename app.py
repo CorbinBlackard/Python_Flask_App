@@ -52,8 +52,9 @@ def switch_user(user_index):
 @app.route('/user_dash/<string:user_id>')
 def user_dash(user_id):
 	user = next((u for u in users if u.user_id == user_id), None)
+	most_checked_out = max(books, key=lambda book: book.times_checked_out)
 	if user:
-		return render_template('user_dash.html', user=user)
+		return render_template('user_dash.html', user=user, most_checked_out=most_checked_out)
 	else:
 		return "User not found", 404
 
